@@ -64,23 +64,23 @@ jobs:
       - name: Capacitor Sync iOS
         run: npx cap sync ios
 
-      - name: Build iOS App (Simulator Package)
+      - name: Build iOS App (Device Package)
         run: |
           xcodebuild -project ios/App/App.xcodeproj \
                      -scheme App \
-                     -sdk iphonesimulator \
-                     -configuration Debug \
+                     -destination 'generic/platform=iOS' \
+                     -configuration Release \
                      CODE_SIGNING_ALLOWED=NO \
                      -derivedDataPath ios/App/build \
                      clean build
 
       - name: Compress iOS App Bundle
         run: |
-          cd ios/App/build/Build/Products/Debug-iphonesimulator
-          zip -r ~/E-commerce-ios-debug.zip App.app
+          cd ios/App/build/Build/Products/Release-iphoneos
+          zip -r ~/E-commerce-ios-release.zip App.app
 
       - name: Upload iOS App
         uses: actions/upload-artifact@v4
         with:
-          name: app-ios-debug
-          path: ~/E-commerce-ios-debug.zip
+          name: app-ios-release
+          path: ~/E-commerce-ios-release.zip
