@@ -1,0 +1,91 @@
+name: Build Android & iOS Apps
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  # --- EXISTING ANDROID BUILD ---
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Web Project
+        run: npm run build
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Capacitor Sync Android
+        run: npx cap sync android
+
+      - name: Build Android APK
+        run: |
+          cd android
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  # --- NEW IOS BUILD ---
+  build-ios:
+    runs-on: macos-latest  # Requires a macOS environment for Xcode
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Web Project
+        run: npm run build
+
+      - name: Install CocoaPods Dependencies
+        run: |
+          cd ios/App
+          pod install
+
+      - name: Capacitor Sync iOS
+        run: npx cap sync ios
+
+      - name: Build iOS App (Simulator Package)
+        run: |
+          xcodebuild -workspace ios/App/App.xcworkspace \
+                     -scheme App \
+                     -sdk iphonesimulator \
+                     -configuration Debug \
+                     CODE_SIGNING_ALLOWED=NO \
+                     clean build
+
+      - name: Compress iOS App Bundle
+        run: |
+          cd ~/Library/Developer/Xcode/DerivedData
+          cd $(ls -d */ | grep "App-")
+          cd Build/Products/Debug-iphonesimulator
+          zip -r ~/E-commerce-ios-debug.zip App.app
+
+      - name: Upload iOS App
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-ios-debug
+          path: ~/E-commerce-ios-debug.zip

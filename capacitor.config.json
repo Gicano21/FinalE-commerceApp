@@ -1,0 +1,17 @@
+{
+  "appId": "com.techstoreapp.app",
+  "appName": "Tech Store",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true
+  },
+  "ios": {
+    "limitsNavigationsToAppBoundDomains": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "androidAutoHideSplashScreen": true
+    }
+  }
+}
