@@ -241,7 +241,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.15752-9/669998879_962122376506849_8100807698182038355_n.png?_nc_cat=100&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFFgBN08ahBx9vUwMLNpAUt28vlxYqK6t7by-XFiorq3qRyuMxPr3wuTFH9ZHQKlzkUis-mWNA403F2kCP9PH4o&_nc_ohc=7UEjOuAwv9sQ7kNvwEP1B1F&_nc_oc=AdoFTE8-w2CNKwdpknqfo__u3ZmeXr-qlMjJCwDYEsncdDtfHRVY6dO-LqV2d8uzj6w&_nc_zt=23&_nc_ht=scontent.fmnl13-1.fna&_nc_ss=7b2a8&oh=03_Q7cD5QEcbhoippfnDUmbqaOtc5maUape6NP4CSZEAzizvfBuKg&oe=6A2E43CB"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/CashOnDeleivery.png?raw=true"
         alt="CashOnDelivery Logo"
         className="max-h-full max-w-full object-contain"
       />
@@ -265,7 +265,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t1.15752-9/696216711_946715898235972_2242282161791577892_n.png?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGotfaDsRJEQ4U8alpQFiJC-x1hw4byVKD7HWHDhvJUoAH_5yw81doGbR3Kat6qPBYzPGBCVRBe8pWsw7TnM4oR&_nc_ohc=XDTDNummWcQQ7kNvwFnlRSn&_nc_oc=AdpJtH1boG6NhmKloNUI3Ma1lC0FJq273rm8TNOdcxggsfzXPFQtcuj8WR2LicDFQTQ&_nc_zt=23&_nc_ht=scontent.fmnl13-1.fna&_nc_ss=7b2a8&oh=03_Q7cD5QGHHPIr1oFk8Xunyh62o4StNHbFp7Oh4BHc6rVKPiodWw&oe=6A2E33FC"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/PayMayya.png?raw=true"
         alt="PayMaya Logo"
         className="max-h-full max-w-full object-contain"
       />
@@ -289,7 +289,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t1.15752-9/664381030_2706017119797220_1272751606968200683_n.png?_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeH4u4YHm3YuzUO2FXd6lEj5HaFVt9BZfIsdoVW30Fl8iw0N5BuNQ9jOJVyYnm8dhXWbBdPqwyr5m7FAt4ecfPKW&_nc_ohc=4DXWhrlwa94Q7kNvwFeaTX_&_nc_oc=AdolGr3FUCwtrrLQmWOVAjrv-hr9GfN8sL95oVnLjCaWb8cOlFRJSzDi_DHb3r6sqpE&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_ss=7b2a8&oh=03_Q7cD5QHlsmKZ1TVQKESbEsULEuj8lqrP3XuvIPNY_u04zoGlLg&oe=6A2E15FD"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/Gcash.png?raw=true"
         alt="GCash Logo"
         className="max-h-full max-w-full object-contain"
       />
@@ -313,7 +313,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.15752-9/541380548_1397979567968778_1924487651891689134_n.png?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFJm9gS0xlb6_vYYqsA2nYkbyxBEU98WoFvLEERT3xagdd__XGIOtn2DkkwIaGgIJpWNuv1v3ZbzVa9tuWlNyJL&_nc_ohc=S2F_ws6aBqAQ7kNvwHZahXa&_nc_oc=AdqUoJoiVwa7dwx5jnw-vmilAQBkvUYPi0Y4pACXYLhhJi70-0kKK48xOCsWq-myJBQ&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_ss=7b2a8&oh=03_Q7cD5QH9zbzytzUb3bBXl15O577xtRCctzy-ML8fS4QNn02WXg&oe=6A2E2F7F"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/GrabPay.png?raw=true"
         alt="Grab Pay Logo"
         className="max-h-full max-w-full object-contain"
       />
@@ -337,7 +337,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.15752-9/506133154_1931441584375829_1201656780302697758_n.png?_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGibX3t2q-peucMv8x-RUdrUjEAz0QR0KpSMQDPRBHQqg3NDxAACgBHzA46jIIlOiFxU5sIswfZ8mJgUcYKPRW2&_nc_ohc=HpOcWGOT_AAQ7kNvwHV4YB0&_nc_oc=AdrV-voT_YiXl7jGeYMnKXeqZxh4fJhQaWq1BMUO0_z5x5gdzjEz3dxz_dnnDT-gqWM&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_ss=7b2a8&oh=03_Q7cD5QH2GkkopgYF_O0uyYxje8IZGID8yNDhG_XmeKHJN5wIhw&oe=6A2E26B9"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/Paypal.png?raw=true"
         alt="PayPal Logo"
         className="max-h-full max-w-full object-contain"
       />
@@ -361,7 +361,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t1.15752-9/668144182_1425314206035755_3614466334890763590_n.png?_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEALyfBzkWKhxbasnihGHuIj_iOrZGxhc-P-I6tkbGFz08I3ds9wX8vmbOkxC07ilFHUXICnLoX79RxtQy-71TU&_nc_ohc=mfBv4BwoDDAQ7kNvwGjpBvn&_nc_oc=AdoXmbDOk7z_ICSefYjLZW54ekP23r6_mCtdmTcs7u_EvfvWFQm1T9wp6F27fyHL9FE&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_ss=7b2a8&oh=03_Q7cD5QG67Cz_EPQa5Nc0Gqvn0xbvPEDKhO_pjQDWuC3AoAt0qQ&oe=6A2E2638"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/Visa.png?raw=true"
         alt="Visa Logo"
         className="max-h-full max-w-full object-contain"
       />
@@ -385,7 +385,7 @@ export function Cart() {
     </div>
     <div className="h-8 w-16 flex items-center justify-end">
       <ImageWithFallback
-        src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t1.15752-9/536492682_695939696823200_4436953454742316969_n.png?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEgbw1yzCfpRNVfe7BDaAm5D4F8lEuC97MPgXyUS4L3s9k0lLOXNsbBumpBcZmQs-blnfsBk69_jxv26rJaYUfg&_nc_ohc=ghK0NVxUNEUQ7kNvwFGNswX&_nc_oc=Adr6pRBs_v-dnUIWhYaizCtC_EzuQFUHOmW7FOYwG-bp3jxWdAeaSXXBQxuYBaKn6NY&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_ss=7b2a8&oh=03_Q7cD5QHVwKdWjcO958pLc7b1uFp66lkpJVf1SxZb1wMHV7QTVQ&oe=6A2E3C80"
+        src="https://github.com/Gicano21/FinalE-commerceServer/blob/main/TechStore_assets/payment_logos/MasterCard.png?raw=true"
         alt="Mastercard Logo"
         className="max-h-full max-w-full object-contain"
       />
