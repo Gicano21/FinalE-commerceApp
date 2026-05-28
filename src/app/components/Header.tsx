@@ -21,7 +21,11 @@ export function Header() {
   const [products, setProducts] = useState<Product[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
-  const searchRef = useRef<HTMLDivElement>(null);
+  
+  // 1. SPLIT INTO TWO DISTINCT REFS
+  const desktopSearchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
+  
   const totalItems = getTotalItems();
 
   useEffect(() => {
@@ -73,7 +77,7 @@ export function Header() {
     if (e.key === "Enter" && searchQuery.trim() !== "") {
       navigate(`/products?q=${encodeURIComponent(searchQuery.trim())}`);
       closeSearch();
-      setSearchQuery("");
+      searchQuery("");
       setMobileMenuOpen(false);
     }
   };
@@ -87,9 +91,16 @@ export function Header() {
     setMobileMenuOpen(false);
   };
 
+  // 2. UPDATE THE CLICK OUTSIDE LOGIC TO ACCOMMODATE BOTH REFS
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      
+      const clickedOutsideDesktop = desktopSearchRef.current && !desktopSearchRef.current.contains(target);
+      const clickedOutsideMobile = mobileSearchRef.current && !mobileSearchRef.current.contains(target);
+
+      // Only close if the click was outside of BOTH search containers
+      if (clickedOutsideDesktop && clickedOutsideMobile) {
         setShowResults(false);
       }
     };
@@ -103,99 +114,96 @@ export function Header() {
         <div className="relative flex h-20 items-center justify-between">
 
           <div className="flex items-center">
-  <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-    <img 
-      src={logo} 
-      alt="Tech Store Logo" 
-      className="h-13 md:h-16 lg:h-18 w-auto rounded-l-[15%]" 
-    />
-    <img 
-      src={logoName} 
-      alt="Tech Store Name" 
-      className="h-12 md:h-15 lg:h-17 w-auto rounded-r-[15%]" 
-    />
-  </Link>
-</div>
+            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+              <img 
+                src={logo} 
+                alt="Tech Store Logo" 
+                className="h-13 md:h-16 lg:h-18 w-auto rounded-l-[15%]" 
+              />
+              <img 
+                src={logoName} 
+                alt="Tech Store Name" 
+                className="h-12 md:h-15 lg:h-17 w-auto rounded-r-[15%]" 
+              />
+            </Link>
+          </div>
 
           <div className="flex items-center gap-2">
             <div className="hidden md:flex gap-2">
               {searchBarOpen && (
-                <div className="relative flex items-center" ref={searchRef}>
-  {/* Back Button positioned absolutely on the left */}
-  <button 
-    type="button"
-    onClick={() => { 
-      setSearchBarOpen(!searchBarOpen); 
-      setMobileMenuOpen(false);
-    }}
-    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-1 text-black hover:sky transition-colors"
-  >
-    <SendToBack className="h-5 w-5" />
-  </button>
+                // 3. ASSIGN DESKTOP REF HERE
+                <div className="relative flex items-center" ref={desktopSearchRef}>
+                  <button 
+                    type="button"
+                    onClick={() => { 
+                      setSearchBarOpen(!searchBarOpen); 
+                      setMobileMenuOpen(false);
+                    }}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-1 text-black hover:sky transition-colors"
+                  >
+                    <SendToBack className="h-5 w-5" />
+                  </button>
 
-  <Input
-    type="text"
-    placeholder="Search products..."
-    value={searchQuery}
-    onChange={handleSearchChange}
-    onKeyDown={handleSearchKeyDown}
-    /* Changed pl-4 to pl-12 to clear room for the back button */
-    className="h-full md:w-80 lg:w-130 xl:w-200 pl-12 pr-4 bg-white text-gray-900 md:text-xl placeholder:text-gray-500 md:placeholder:text-xl border border-gray-300 rounded-lg shadow-sm"
-  />
+                  <Input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onKeyDown={handleSearchKeyDown}
+                    className="h-full md:w-80 lg:w-130 xl:w-200 pl-12 pr-4 bg-white text-gray-900 md:text-xl placeholder:text-gray-500 md:placeholder:text-xl border border-gray-300 rounded-lg shadow-sm"
+                  />
 
-  {showResults && searchResults.length > 0 && (
-    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
-      {searchResults.map((product) => (
-        <button
-          key={product.id}
-          onClick={() => handleSelectProduct(product.id)}
-          className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 text-left"
-        >
-          <img src={product.image} alt={product.name} className="h-10 w-10 object-cover rounded" />
-          <div className="flex-1 min-w-0">
-            <p className="font-medium text-gray-900 truncate">{product.name}</p>
-            <p className="text-sm text-gray-500 truncate">{product.category}</p>
-          </div>
-        </button>
-      ))}
-    </div>
-  )}
-</div>
-                )}
-              </div>
+                  {showResults && searchResults.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
+                      {searchResults.map((product) => (
+                        <button
+                          key={product.id}
+                          onClick={() => handleSelectProduct(product.id)}
+                          className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 text-left"
+                        >
+                          <img src={product.image} alt={product.name} className="h-10 w-10 object-cover rounded" />
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-gray-900 truncate">{product.name}</p>
+                            <p className="text-sm text-gray-500 truncate">{product.category}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             <Button
-  variant="ghost"
-  size="icon"
-  onClick={() => {
-    setSearchBarOpen(!searchBarOpen);
-    setMobileMenuOpen(false);
-  }}
-  className={`hover:bg-gray-100 rounded-full text-white md:mr-2 ${
-    !searchBarOpen ? "" : "md:hidden"
-  }`}
->
-  <Search className="h-5 w-5" />
-</Button>
+              variant="ghost"
+              size="icon"
+              onClick={() => {
+                setSearchBarOpen(!searchBarOpen);
+                setMobileMenuOpen(false);
+              }}
+              className={`hover:bg-gray-100 rounded-full text-white md:mr-2 ${
+                !searchBarOpen ? "" : "md:hidden"
+              }`}
+            >
+              <Search className="h-5 w-5" />
+            </Button>
 
             {!searchBarOpen && (
-
-            <nav className="hidden md:flex items-center gap-4 text-base lg:text-2xl">
-              <Link to="/" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
-                Home
-              </Link>
-              <Link to="/products" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
-                Products
-              </Link>
-              <Link to="/about" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
-                About
-              </Link>
-              <Link to="/contact" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
-                Contact
-              </Link>
-            </nav>
+              <nav className="hidden md:flex items-center gap-4 text-base lg:text-2xl">
+                <Link to="/" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
+                  Home
+                </Link>
+                <Link to="/products" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
+                  Products
+                </Link>
+                <Link to="/about" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
+                  About
+                </Link>
+                <Link to="/contact" className="text-white transition-colors font-medium hover:bg-gradient-to-r hover:from-purple-200 hover:to-blue-100 hover:text-gray-800 rounded-t-sm pl-2 pr-2 pb-6 mt-6">
+                  Contact
+                </Link>
+              </nav>
             )}
-
 
             <Link to="/cart">
               <Button variant="ghost" size="icon" className="relative hover:bg-gray-100 rounded-full text-white">
@@ -237,7 +245,8 @@ export function Header() {
           </div>
         </div>
         {searchBarOpen && (
-          <div className="md:hidden mt-2 relative border-t border-gray-200" ref={searchRef}>
+          // 4. ASSIGN MOBILE REF HERE
+          <div className="md:hidden mt-2 relative border-t border-gray-200" ref={mobileSearchRef}>
             <Input
               type="text"
               placeholder="Search products..."
